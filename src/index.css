@@ -10,7 +10,7 @@
 :root {
   --primary: #6a59ff;
   --white: #ffffff;
-  --bg: #e71cdd;
+  --bg:#808080;
 }
 
 html {
@@ -68,8 +68,11 @@ body {
 .heading {
   padding: 1rem 0;
   font-size: 3.5rem;
+  font-weight: 400;
   text-align: center;
+  
 }
+
 
 .swiper_container {
   height: 52rem;
@@ -181,4 +184,12 @@ body {
 
 .swiper-pagination .swiper-pagination-bullet-active {
   background: var(--primary);
+}
+.word {
+  font-size: 3.5rem;
+  text-align: center;
+  margin: auto;
+  color: white;
+  font: 700 normal 2.5em 'tahoma';
+  text-shadow: 5px 2px #222324, 2px 4px #222324, 3px 5px #222324;
 }

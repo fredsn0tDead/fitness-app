@@ -1,25 +1,15 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
 import {Swiper, SwiperSlide} from 'swiper/react'   
-import './SlideCarousel.css'
+
 import'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-
+import { Animation } from '../Animation'
 import { fetchData } from '../../utils/fetch'
 import { exerciseData } from '../../utils/fetch'
 import { EffectCoverflow, Pagination, Navigation } from 'swiper';
 
-
-
-
-import slide_image_1 from '../../assets/slide_image_1.jpg'
-import slide_image_2 from '../../assets/slide_image_2.jpg'
-import slide_image_3 from '../../assets/slide_image_3.jpg'
-import slide_image_4 from '../../assets/slide_image_4.jpg'
-import slide_image_5 from '../../assets/slide_image_5.jpg'
-import slide_image_6 from '../../assets/slide_image_6.jpg'
-import { ExcersiseCard } from '../../ExcersiseCard'
 
 const excersiselist = [
     {
@@ -58,11 +48,12 @@ const SlideCarousel = () => {
     }, []);
     if (!exercise.length) return 'Loading...';
     
- 
+    const slicedExercise = exercise.slice(0, 7);
     
     return (
         <div className="container">
-          <h1 className="heading">Build a Better Workout Plan</h1>
+          <Animation text="Build a Workout plan that suits your build" delay={100}   />
+       
           <Swiper
             effect={'coverflow'}
             grabCursor={true}
@@ -85,10 +76,11 @@ const SlideCarousel = () => {
             className="swiper_container"
           >
             {
-            exercise.map((data) => (  
+            slicedExercise.map((data) => (  
               <SwiperSlide>
-                {/* <ExcersiseCard giflink= {data.equipment}/> */}
+                {/* <ExcersiseCard giflink= {da ta.equipment}/> */}
                 <img src={data.gifUrl}  loading ="lazy" />
+                <p key={data.id}>{data.name.toUpperCase()} </p>
               </SwiperSlide>
             ))
           }
