@@ -4,7 +4,7 @@ import { Route, Routes ,BrowserRouter} from 'react-router-dom';
 
 import Log from './components/Log';
 import { Nav } from './components/Nav';
-import { Home } from './pages/Home';
+import { Homepage } from './pages/Homepage';
 import SlideCarousel from './components/Carousel/SlideCarousel';
 import { Login } from './components/Login';
 import { SignUp } from './components/SignUp';
@@ -15,7 +15,7 @@ function App() {
       <Nav/>{/* placed the nav bar at top to be outted on each page */}
     <Routes>
    
-     <Route  path="/" element={<SlideCarousel/> }/>
+     <Route  path="/" element={<Homepage/> }/>
     
       <Route exact path="/login" element= {<Login/>}/> 
       <Route exact path="/signup" element= {<SignUp/>}/>
