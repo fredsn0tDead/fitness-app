@@ -3,12 +3,13 @@ import axios from 'axios'
 import { useState,useEffect } from 'react'
 import SlideCarousel from '../components/Carousel/SlideCarousel'
 import { ExcersieLog } from './ExcersieLog'
+import { Dashboard } from './Dashboard'
 export const Homepage = () => {
 
   
 
   return (
-    <ExcersieLog />
+    <Dashboard />
     
   )
 }

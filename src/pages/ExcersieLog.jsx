@@ -52,7 +52,7 @@ const removeRow = (id) => { // Dynamically remove rows from the table
 
   return (
     
-    <div>
+    <div name='exerciselog'>
       <Button variant="outlined" onClick={addRow}>Add Row</Button>
       <form method='POST' onSubmit={handleSubmit}>
       <Table name='excersiselog'>

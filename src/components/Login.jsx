@@ -18,7 +18,7 @@ import {  signInWithEmailAndPassword   } from 'firebase/auth';
 import { auth } from './firebase';
 const defaultTheme = createTheme();
 
-export const Login = () => {
+export const Login = ({onLogin}) => {
 
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
@@ -30,7 +30,7 @@ export const Login = () => {
       .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          navigate("/home")
+          navigate("/loggedin")
           console.log(user);
       })
       .catch((error) => {
@@ -38,6 +38,8 @@ export const Login = () => {
           const errorMessage = error.message;
           console.log(errorCode, errorMessage)
       });
+      const isLoggedIn = true;
+      onLogin(isLoggedIn);
      
   }
   return (
