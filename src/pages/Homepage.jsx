@@ -4,12 +4,13 @@ import { useState,useEffect } from 'react'
 import SlideCarousel from '../components/Carousel/SlideCarousel'
 import { ExcersieLog } from './ExcersieLog'
 import { Dashboard } from './Dashboard'
+import { SignOut } from './SignOut'
 export const Homepage = () => {
 
   
 
   return (
-    <Dashboard />
+    <SlideCarousel />
     
   )
 }

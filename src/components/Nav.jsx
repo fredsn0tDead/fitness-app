@@ -12,9 +12,14 @@ export const Nav = ({isLoggedIn, onSignOut}) => {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             FORMFIT 
             </Typography>
-            {isLoggedIn ? (<Button color="inherit" onClick={onSignOut}>
+            {isLoggedIn ? (
+            <>
+            <Button color="inherit" onClick={onSignOut}component={Link} to="/signout" >
+
             Sign Out
           </Button>
+          <Button color="inherit" component={Link} to="/dashboard">Home</Button>
+          </>
             ) : (
               <>
             <Button color="inherit" component={Link} to="/">Home</Button>

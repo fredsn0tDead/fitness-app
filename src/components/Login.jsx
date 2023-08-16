@@ -30,7 +30,7 @@ export const Login = ({onLogin}) => {
       .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          navigate("/loggedin")
+          navigate("/dashboard")
           console.log(user);
       })
       .catch((error) => {
