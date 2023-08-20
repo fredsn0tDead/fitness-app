@@ -29,9 +29,9 @@ export const Login = ({onLogin}) => {
       signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
           // Signed in
-          const user = userCredential.user;
-          navigate("/dashboard")
-          console.log(user);
+          const { displayName, email, uid } = userCredential.user;
+          navigate("/dashboard",{ state: {  displayName, email, uid } })
+          console.log(displayName, email, uid );
       })
       .catch((error) => {
           const errorCode = error.code;

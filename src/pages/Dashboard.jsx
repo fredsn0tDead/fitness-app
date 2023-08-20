@@ -5,7 +5,8 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import {Link,useNavigate} from 'react-router-dom'
-
+import { useLocation } from 'react-router-dom';
+import { ExcersieLog } from '../components/ExcersieLog';
 const RootContainer = styled('div')({
   display: 'flex',
   flexDirection: 'column',
@@ -47,8 +48,13 @@ const ActionButton = styled(Button)({
 // used to search for older workouts create a new workout and view your progress
 //should be able to output a graph of your progress
 export const Dashboard = () => {
-  
-  
+  // const location = useLocation();
+  // const { displayName, email, uid } = location.state || {};
+  const location = useLocation();
+  const navigate = useNavigate();
+  const  {displayName, email, uid} =  location.state || {};
+  console.log('Dashboard component rendering...');
+  console.log('User info:', displayName, email, uid);
   return (
     <RootContainer>
     <StyledPaper elevation={3}>
@@ -61,27 +67,29 @@ export const Dashboard = () => {
         <ActionButton
           variant="contained"
           onClick={() => {
-            // Handle click for "Exercise Recommender"
+            navigate('/previous-workouts', { state: { displayName, email, uid } });
           }}
         >
-          <Link to='/exercise-recommender'>Exercise Recommender</Link>
+          Exercise Recommender
           
         </ActionButton>
         <ActionButton
           variant="contained"
-         
-        >
-         
-          <Link to='/exercise-log'>Exercise Log</Link>
+          onClick={() => {
+            navigate('/exercise-log', { state: { displayName, email, uid } });
+          }}
+        >Exercise Log
         </ActionButton>
         <ActionButton
-          variant="contained"
-          onClick={() => {
-            // Handle click for "Previous Workouts"
-          }}
+         variant="contained"
+         onClick={() => {
+          navigate('/previous-workouts', { state: { displayName, email, uid } });
+        }}
+
         >
-         <Link to='/previous-workouts'>Previous Workouts</Link> 
+         Previous Workouts
         </ActionButton>
+     
       </ActionButtonsContainer>
     </StyledPaper>
   </RootContainer>

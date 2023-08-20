@@ -8,9 +8,34 @@ import {TableCell} from '@mui/material';
 import {TableHead} from '@mui/material';
 import {TableRow} from '@mui/material';
 import axios from 'axios'
+import { useLocation } from 'react-router-dom';
+import { auth } from './firebase';
+import { useEffect } from 'react';
+import { getAuth, onAuthStateChanged } from 'firebase/auth'; 
+ // Import your Firebase authentication object
+
 
 export const ExcersieLog = () => {
-
+    const location = useLocation();
+    const {displayName, email, uid} =  location.state || {};
+    const [user, setUser] = useState(null);
+    console.log('Exercise Log component rendering...');
+     console.log('User info:', displayName, email, uid);
+     
+    useEffect(() => {
+      const auth = getAuth();
+  
+      // Use onAuthStateChanged to listen for changes in authentication state
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        setUser(user); // Update the user state when authentication state changes
+      });
+  
+      return () => {
+        unsubscribe(); // Clean up the listener when the component unmounts
+      };
+    }, []);
+  // const { displayName, email, uid } = location.state || {}; // Get the user object passed as state from the Login component
+  
     const[tableData,setTableData] = useState([
     {id:1,excerise:'',sets:'',reps:'',weight:'',rpe:''}
 
@@ -21,17 +46,22 @@ const handleSubmit = async (e) => {
     const jsonData = JSON.stringify(tableData);
     console.log(jsonData);
     console.log(tableData);
-    try {
+    
+    if (user && uid) {
+      try {
+    
       // Make a POST request to the Flask backend
       await axios.post('http://127.0.0.1:5000/submit-form', jsonData, {
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `${await user.getIdToken()}`
           },
           });
     } catch (error) {
       console.error('Error storing data:', error);
     }
-  };
+  }
+ } ;
 
 
 
@@ -53,6 +83,8 @@ const removeRow = (id) => { // Dynamically remove rows from the table
   return (
     
     <div name='exerciselog'>
+      
+  
       <Button variant="outlined" onClick={addRow}>Add Row</Button>
       <form method='POST' onSubmit={handleSubmit}>
       <Table name='excersiselog'>
@@ -110,3 +142,4 @@ const removeRow = (id) => { // Dynamically remove rows from the table
     </div>
   )
 }
+

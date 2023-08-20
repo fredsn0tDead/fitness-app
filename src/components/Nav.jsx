@@ -3,7 +3,12 @@ import React from 'react'
 import { Link,useNavigate } from 'react-router-dom'
 import {AppBar, Toolbar, Typography, Button} from '@mui/material'
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import { useLocation } from 'react-router-dom';
+
 export const Nav = ({isLoggedIn, onSignOut}) => {
+  const location = useLocation();
+  const  {displayName, email, uid} =  location.state || {};
+  const navigate = useNavigate();
   return (
    
     <AppBar position="static">
@@ -18,7 +23,9 @@ export const Nav = ({isLoggedIn, onSignOut}) => {
 
             Sign Out
           </Button>
-          <Button color="inherit" component={Link} to="/dashboard">Home</Button>
+          <Button color="inherit"  onClick={() => {
+            navigate('/dashboard', { state: { displayName, email, uid } });
+          }}>Home</Button>
           </>
             ) : (
               <>

@@ -1,22 +1,22 @@
 import logo from './logo.svg';
-import { Route, Routes ,BrowserRouter} from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Route, Routes ,BrowserRouter, useLocation} from 'react-router-dom';
+
 import { useState } from 'react';
-import Log from './components/Log';
+
 import { Nav } from './components/Nav';
 import { Homepage } from './pages/Homepage';
-import SlideCarousel from './components/Carousel/SlideCarousel';
+
 import { Login } from './components/Login';
 import { SignUp } from './components/SignUp';
 import { Slide } from '@mui/material';
-import { ExcersieLog } from './pages/ExcersieLog';
-import { PreviousWorkout } from './pages/PreviousWorkout';
+import { ExcersieLog } from './components/ExcersieLog';
+import { PreviousWorkout } from './components/PreviousWorkout';
 import { Dashboard } from './pages/Dashboard';
 import { SignOut } from './pages/SignOut';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  
   const handleLogin = (loggedIn) => {
     setIsLoggedIn(loggedIn);
     
